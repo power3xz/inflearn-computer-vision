@@ -34,7 +34,7 @@ export class DrawableDirective implements OnInit {
   onMove(e) {
     this.setPosition(e);
   }
-  @HostListener('mousedown', ['$event'])
+  @HostListener('mousemove', ['$event'])
   onDown(e) {
     if (e.buttons !== 1) {
       return;
@@ -44,7 +44,7 @@ export class DrawableDirective implements OnInit {
 
     this.ctx.lineWidth = 10;
     this.ctx.lineCap = 'round';
-    this.ctx.strokeStyle = '#111111';
+    this.ctx.strokeStyle = '#ffffff';
 
     this.ctx.moveTo(this.pos.x, this.pos.y);
     this.setPosition(e);
