@@ -44,9 +44,9 @@ export class ClassifierPage implements OnInit {
       const timeDiff = endTime.valueOf() - startTime.valueOf();
       this.predictText = `Prediction Result: ${maxIndex.toString()}`;
       this.elapsedText = `Elapsed: ${timeDiff.toString()}ms`;
-      this.confidenceText = `Confidence: ${this.predictions[
-        maxIndex
-      ].toString()}`;
+      this.confidenceText = `Confidence: ${this.predictions[maxIndex]
+        .toPrecision(4)
+        .toString()}`;
     });
   }
 
