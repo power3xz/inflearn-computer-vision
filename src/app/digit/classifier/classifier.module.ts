@@ -7,14 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { ClassifierPageRoutingModule } from './classifier-routing.module';
 
 import { ClassifierPage } from './classifier.page';
+import { DrawableDirective } from '../drawable.directive';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ClassifierPageRoutingModule
+    ClassifierPageRoutingModule,
   ],
-  declarations: [ClassifierPage]
+  declarations: [ClassifierPage, DrawableDirective],
 })
 export class ClassifierPageModule {}

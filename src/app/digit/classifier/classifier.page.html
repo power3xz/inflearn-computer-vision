@@ -1,7 +1,17 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>classifier</ion-title>
+    <ion-title>Digit classifier</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content> digit </ion-content>
+<ion-content>
+  <div class="container">
+    <div class="wrapper">
+      <canvas appDrawable (newImage)="predict($event)"></canvas><br />
+    </div>
+    <h3>{{predict_text}}</h3>
+    <ion-button color="light" expand="full" (click)="canvas.clear();clear();"
+      >Clear</ion-button
+    >
+  </div>
+</ion-content>
