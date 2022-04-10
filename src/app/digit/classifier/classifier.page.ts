@@ -39,12 +39,11 @@ export class ClassifierPage implements OnInit {
       this.predictions = Array.from(output.dataSync());
       const maxIndex = this.argMax(this.predictions);
       const endTime = new Date();
-      let timeDiff = endTime.valueOf() - startTime.valueOf();
-      timeDiff /= 1000;
+      const timeDiff = endTime.valueOf() - startTime.valueOf();
 
       this.predictText = `Prediction Result: ${maxIndex.toString()}
   Confidence: ${this.predictions[maxIndex].toString()}
-  Elapsed: ${timeDiff.toString()}
+  Elapsed: ${timeDiff.toString()}ms
   `;
     });
   }
