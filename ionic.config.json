@@ -1,0 +1,7 @@
+{
+  "name": "inflearn-computer-vision",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
