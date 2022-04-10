@@ -5,13 +5,22 @@
 </ion-header>
 
 <ion-content>
-  <div class="container">
-    <div class="wrapper">
-      <canvas appDrawable (newImage)="predict($event)"></canvas><br />
-    </div>
-    <h3>{{ predictText }}</h3>
-    <ion-button color="light" expand="full" (click)="canvas.clear();clear();"
-      >Clear</ion-button
-    >
-  </div>
+  <ion-grid>
+    <ion-row>
+      <div class="container">
+        <div class="wrapper">
+          <canvas appDrawable (newImage)="predict($event)"></canvas><br />
+        </div>
+        <h3>{{ predictText }}</h3>
+        <h3>{{ confidenceText }}</h3>
+        <h3>{{ elapsedText }}</h3>
+        <ion-button
+          color="light"
+          expand="full"
+          (click)="canvas.clear();clear();"
+          >Clear</ion-button
+        >
+      </div>
+    </ion-row>
+  </ion-grid>
 </ion-content>

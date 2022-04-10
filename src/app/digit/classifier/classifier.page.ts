@@ -12,6 +12,8 @@ export class ClassifierPage implements OnInit {
   @ViewChild(DrawableDirective, { static: false }) canvas;
 
   predictText = 'Please draw a digit';
+  confidenceText = '';
+  elapsedText = '';
 
   model: tf.LayersModel;
   predictions: any;
@@ -40,11 +42,11 @@ export class ClassifierPage implements OnInit {
       const maxIndex = this.argMax(this.predictions);
       const endTime = new Date();
       const timeDiff = endTime.valueOf() - startTime.valueOf();
-
-      this.predictText = `Prediction Result: ${maxIndex.toString()}
-  Confidence: ${this.predictions[maxIndex].toString()}
-  Elapsed: ${timeDiff.toString()}ms
-  `;
+      this.predictText = `Prediction Result: ${maxIndex.toString()}`;
+      this.elapsedText = `Elapsed: ${timeDiff.toString()}ms`;
+      this.confidenceText = `Confidence: ${this.predictions[
+        maxIndex
+      ].toString()}`;
     });
   }
 
