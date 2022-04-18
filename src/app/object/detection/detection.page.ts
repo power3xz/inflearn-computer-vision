@@ -8,6 +8,13 @@ import {
 
 import * as cocoSsd from '@tensorflow-models/coco-ssd';
 import { DetectedObject } from '@tensorflow-models/coco-ssd';
+import { initializeApp } from 'firebase/app';
+
+import { getDatabase, update, ref, child } from 'firebase/database';
+
+const firebaseConfig = {};
+
+const app = initializeApp(firebaseConfig);
 
 @Component({
   selector: 'app-detection',
@@ -22,6 +29,7 @@ export class DetectionPage implements OnInit {
   currentDetections: DetectedObject[];
   model: cocoSsd.ObjectDetection;
 
+  previousNumber = 0;
   videoBoundingRect;
   svgEnabled = true;
   numberOfObject;
@@ -45,6 +53,20 @@ export class DetectionPage implements OnInit {
         this.videoRef.nativeElement
       );
       this.numberOfObject = this.currentDetections.length;
+      if (this.numberOfObject === this.previousNumber) {
+      } else {
+        const db = getDatabase(
+          app,
+          'https://mobile-dnn-6e76e-default-rtdb.firebaseio.com/'
+        );
+
+        this.previousNumber = this.numberOfObject;
+        const timestamp = new Date().getTime();
+        update(child(ref(db, 'parking'), 'west-coast'), {
+          count: this.numberOfObject,
+          time: timestamp,
+        });
+      }
       this.cdRef.markForCheck();
       requestAnimationFrame(async () => {
         await this.detectFrame();
