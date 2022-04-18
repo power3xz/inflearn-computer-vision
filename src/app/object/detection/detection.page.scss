@@ -1,0 +1,14 @@
+.video-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.video-area {
+  position: relative;
+}
+
+.svg-area {
+  border: 1px greenyellow solid;
+  position: absolute;
+}

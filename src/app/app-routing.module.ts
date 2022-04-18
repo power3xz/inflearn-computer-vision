@@ -14,6 +14,10 @@ const routes: Routes = [
   {
     path: 'classifier',
     loadChildren: () => import('./digit/classifier/classifier.module').then( m => m.ClassifierPageModule)
+  },
+  {
+    path: 'detection',
+    loadChildren: () => import('./object/detection/detection.module').then( m => m.DetectionPageModule)
   }
 ];
 
