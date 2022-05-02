@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Gesture Recognition</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content
+  ><div #videoRef></div>
+  <ul>
+    <li *ngFor="let item of predictions">
+      <i
+        [style.display]="'inline-block'"
+        [style.width.px]="100"
+        [style.height.px]="40"
+        [style.vertical-align]="'middle'"
+        >{{item.className}}</i
+      >
+      <div
+        class="bar"
+        [style.width.px]="300"
+        [style.height.px]="40"
+        [style.display]="'inline-block'"
+        [style.position]="'relative'"
+        [style.vertical-align]="'middle'"
+      >
+        <div
+          class="bar__in"
+          [style.width.%]="item.probability * 100"
+          [style.height.%]="100"
+          [style.display]="'inline-block'"
+          [style.white-space]="'nowrap'"
+          [style.background-color]="item.className === 'Rock' ? 'brown' : item.className === 'Paper' ? 'white' : 'blue'"
+        >
+          {{ (item.probability * 100).toFixed(2) }}%
+        </div>
+      </div>
+    </li>
+  </ul></ion-content
+>

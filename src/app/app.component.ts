@@ -8,6 +8,7 @@ export class AppComponent {
   public appPages = [
     { title: 'Digit Classifier', url: 'classifier', icon: 'text' },
     { title: 'Object Detection', url: 'detection', icon: 'car' },
+    { title: 'Gesture Recognition', url: 'recognition', icon: 'thumbs-up' },
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
   constructor() {}

@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'detection',
     loadChildren: () => import('./object/detection/detection.module').then( m => m.DetectionPageModule)
+  },
+  {
+    path: 'recognition',
+    loadChildren: () => import('./gesture/recognition/recognition.module').then( m => m.RecognitionPageModule)
   }
 ];
 
