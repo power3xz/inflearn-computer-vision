@@ -8,35 +8,28 @@
 </ion-header>
 
 <ion-content
-  ><div #videoRef></div>
-  <ul>
-    <li *ngFor="let item of predictions">
-      <i
+  ><div class="container">
+    <div #videoRef></div>
+    <br />
+    <p class="label">{{ label }}</p>
+    <div *ngFor="let item of predictions">
+      <div
         [style.display]="'inline-block'"
         [style.width.px]="100"
         [style.height.px]="40"
-        [style.vertical-align]="'middle'"
-        >{{item.className}}</i
+        [style.line-height.px]="40"
+        [style.vertical-align]="'top'"
       >
-      <div
-        class="bar"
-        [style.width.px]="300"
-        [style.height.px]="40"
-        [style.display]="'inline-block'"
-        [style.position]="'relative'"
-        [style.vertical-align]="'middle'"
-      >
+        {{item.className}}
+      </div>
+      <div class="bar">
         <div
-          class="bar__in"
+          [className]="item.className === 'Rock' ? 'bar__in bar__in--rock' : item.className === 'Paper' ? 'bar__in bar__in--paper' : 'bar__in bar__in--scissor'"
           [style.width.%]="item.probability * 100"
-          [style.height.%]="100"
-          [style.display]="'inline-block'"
-          [style.white-space]="'nowrap'"
-          [style.background-color]="item.className === 'Rock' ? 'brown' : item.className === 'Paper' ? 'white' : 'blue'"
         >
           {{ (item.probability * 100).toFixed(2) }}%
         </div>
       </div>
-    </li>
-  </ul></ion-content
->
+    </div>
+  </div>
+</ion-content>

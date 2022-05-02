@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import * as tmImage from '@teachablemachine/image';
 
@@ -14,6 +15,12 @@ export class RecognitionPage implements OnInit {
   predictions;
   webcam;
   maxPredictions;
+  label: string;
+  map: { [key in string]: string } = {
+    Rock: '바위',
+    Scissors: '가위',
+    Paper: '보',
+  };
 
   constructor() {}
 
@@ -30,13 +37,18 @@ export class RecognitionPage implements OnInit {
     requestAnimationFrame(() => {
       this.loop();
     });
-    console.log(this.webcam.canvas);
     this.videoRef.nativeElement.appendChild(this.webcam.canvas);
   }
 
   async loop() {
     this.webcam.update();
     this.predictions = await this.model.predict(this.webcam.canvas, true);
+    this.label =
+      this.map[
+        Array.from<{ className: string }>(this.predictions).sort(
+          (a: any, b: any) => b.probability - a.probability
+        )[0].className
+      ];
     requestAnimationFrame(() => {
       this.loop();
     });
