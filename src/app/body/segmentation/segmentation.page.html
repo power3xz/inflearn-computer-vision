@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Body Segmentation</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item [disabled]="isReady">
+      <ion-label>Camera</ion-label>
+      <ion-select value="environment" (ionChange)="changeCamera($event)">
+        <ion-select-option value="environment">Rear Camera</ion-select-option>
+        <ion-select-option value="user">Front Camera</ion-select-option>
+      </ion-select>
+      <ion-button (click)="startCamera()">Show</ion-button>
+    </ion-item>
+
+    <ion-item *ngIf="isReady">
+      <ion-label>Model</ion-label>
+      <ion-select value="mobilenet" (ionChange)="changeModel($event)">
+        <ion-select-option value="mobilenet">MobileNet (smaller, faster, less accurate)</ion-select-option>
+        <ion-select-option value="resnet">ResNet (larger, slower, more accurate)</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="isReady">
+      <ion-label>Visualization</ion-label>
+      <ion-select value="toMask" (ionChange)="changeVisualization($event)">
+        <ion-select-option value="toMask">bodyPix.toMask</ion-select-option>
+        <ion-select-option value="toColoredPartMask">bodyPix.toColoredPartMask</ion-select-option>
+        <ion-select-option value="drawMask">bodyPix.drawMask</ion-select-option>
+        <ion-select-option value="drawPixelatedMask">bodyPix.drawPixelatedMask</ion-select-option>
+        <ion-select-option value="drawBokehEffect">bodyPix.drawBokehEffect</ion-select-option>
+        <ion-select-option value="blurBodyPart">bodyPix.blurBodyPart</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+  </ion-list>
+  <div class="container">
+    <video #video autoplay></video>
+    <canvas #canvas hidden></canvas>
+    <canvas #output></canvas>
+  </div>
+
+  <ion-fab  *ngIf="isReady" vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="capture()">
+      <ion-icon name="camera"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
